@@ -4,6 +4,25 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Authors>Fedodo</Authors>
+        <PackageId>Fedodo.ActivityPub.Model</PackageId>
+        <Title>Fedodo.ActivityPub.Model</Title>
+        <Description>A Fedodo NuGet containing the ActivityPub model.</Description>
+        <PackageProjectUrl>https://fedodo.org</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Fedodo;ActivityPub;Model;</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>Fedodo Circle Dark.png</PackageIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\Assets\Fedodo Circle Dark.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>Fedodo Circle Dark.png</Link>
+      </None>
+    </ItemGroup>
 
 </Project>
