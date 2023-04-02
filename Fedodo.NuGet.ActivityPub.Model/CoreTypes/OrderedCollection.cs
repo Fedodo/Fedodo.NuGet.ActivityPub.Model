@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace Fedodo.NuGet.ActivityPub.Model;
+namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
-public class OrderedCollection<T>
+public class OrderedCollection<T> : Collection<T>
 {
     [JsonPropertyName("@context")] public string Context { get; set; } = "https://www.w3.org/ns/activitystreams";
     [JsonPropertyName("summary")] public string? Summary { get; set; }

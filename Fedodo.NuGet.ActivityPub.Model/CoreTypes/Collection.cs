@@ -1,8 +1,11 @@
 using System.Text.Json.Serialization;
 
-namespace Fedodo.NuGet.ActivityPub.Model;
+namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
-public class Collection<T>
+/// <summary>
+/// A Collection is a subtype of Object that represents ordered or unordered sets of Object or Link instances. Refer to the Activity Streams 2.0 Core specification for a complete description of the Collection type.
+/// </summary>
+public class Collection<T> : Object
 {
     [JsonPropertyName("@context")] public string Context { get; set; } = "https://www.w3.org/ns/activitystreams";
     [JsonPropertyName("summary")] public string? Summary { get; set; }

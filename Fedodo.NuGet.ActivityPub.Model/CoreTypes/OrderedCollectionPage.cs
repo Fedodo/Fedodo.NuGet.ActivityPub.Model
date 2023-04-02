@@ -1,8 +1,12 @@
 using System.Text.Json.Serialization;
 
-namespace Fedodo.NuGet.ActivityPub.Model;
+namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
-public class OrderedCollectionPage<T>
+/// <summary>
+/// Used to represent ordered subsets of items from an OrderedCollection. Refer to the Activity Streams 2.0 Core for a complete description of the OrderedCollectionPage object.
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public class OrderedCollectionPage<T> : CollectionPage<T>
 {
     [JsonPropertyName("@context")] public string Context { get; set; } = "https://www.w3.org/ns/activitystreams";
     [JsonPropertyName("type")] public string Type { get; set; } = "OrderedCollectionPage";
