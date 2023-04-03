@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.Properties;
 using Shouldly;
 using Xunit;
 

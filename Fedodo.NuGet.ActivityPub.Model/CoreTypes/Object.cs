@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.Properties;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
@@ -10,6 +11,8 @@ public class Object
 {
     // TODO Maybe I can use custom converters with the specific attribute to see if an object is an link or an real object.
     
-    [JsonPropertyName("attachment")] public IEnumerable<Attachment>? Attachment { get; set; }
+    [JsonPropertyName("attachment")] 
+    [JsonConverter(typeof(AttachmentConverter))]
+    public IEnumerable<Attachment>? Attachment { get; set; }
     [JsonPropertyName("attributedTo")] public IEnumerable<Uri>? AttributedTo { get; set; } // TODO This also might be of type AttributedTo
 }
