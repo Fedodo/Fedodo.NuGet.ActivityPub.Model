@@ -25,4 +25,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11" />
+    </ItemGroup>
+
 </Project>
