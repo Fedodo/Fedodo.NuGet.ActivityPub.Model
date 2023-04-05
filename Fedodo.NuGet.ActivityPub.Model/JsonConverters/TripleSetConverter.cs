@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommonExtensions;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
-public class TripleSetConverter : JsonConverter<TripleSet>
+public class TripleSetConverter<T> : JsonConverter<TripleSet<T>>
 {
-    public override TripleSet? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override TripleSet<T>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        TripleSet tripleSet = new();
+        TripleSet<T> tripleSet = new();
 
         var tokenType = reader.TokenType;
 
@@ -18,31 +17,27 @@ public class TripleSetConverter : JsonConverter<TripleSet>
         {
             case JsonTokenType.StartObject:
             {
-                var apObject = JsonSerializer.Deserialize<Object>(reader: ref reader);
+                tripleSet = GetObject(ref reader, tripleSet);
 
-                if (apObject.IsNotNull())
+                break;
+            }
+            case JsonTokenType.StartArray:
+            {
+                while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
                 {
-                    tripleSet.Objects = new[]
+                    tripleSet = reader.TokenType switch
                     {
-                        apObject
+                        JsonTokenType.StartObject => GetObject(ref reader, tripleSet),
+                        JsonTokenType.String => GetString(reader, tripleSet),
+                        _ => tripleSet
                     };
                 }
                 
                 break;
             }
-            case JsonTokenType.StartArray:
-                break;
             case JsonTokenType.String:
             {
-                var stringLink = reader.GetString();
-
-                if (stringLink.IsNotNull())
-                {
-                    tripleSet.StringLinks = new[]
-                    {
-                        stringLink
-                    };
-                }
+                tripleSet = GetString(reader, tripleSet);
 
                 break;
             }
@@ -51,7 +46,7 @@ public class TripleSetConverter : JsonConverter<TripleSet>
         return tripleSet;
     }
 
-    public override void Write(Utf8JsonWriter writer, TripleSet value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, TripleSet<T> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
 
@@ -68,4 +63,59 @@ public class TripleSetConverter : JsonConverter<TripleSet>
         //
         // writer.WriteEndArray();
     }
+    
+    /// <summary>
+    /// Uses the default JsonSerializer to deserialize an Object.
+    /// </summary>
+    /// <param name="reader">The JSON Reader.</param>
+    /// <param name="tripleSet">The TripleSet in which the String should be added.</param>
+    /// <returns>Triple Set</returns>
+    private TripleSet<T> GetObject(ref Utf8JsonReader reader, TripleSet<T> tripleSet)
+    {
+        var apObject = JsonSerializer.Deserialize<T>(reader: ref reader);
+
+        if (apObject.IsNull()) return tripleSet;
+        
+        if (tripleSet.Objects.IsNull())
+        {
+            tripleSet.Objects = new[]
+            {
+                apObject
+            };
+        }
+        else
+        {
+            tripleSet.Objects.ToList().Add(apObject);
+        }
+
+        return tripleSet;
+    }
+
+    /// <summary>
+    /// Uses the default JsonSerializer to deserialize an String.
+    /// </summary>
+    /// <param name="reader">The JSON Reader.</param>
+    /// <param name="tripleSet">The TripleSet in which the String should be added.</param>
+    /// <returns>TripleSet</returns>
+    private TripleSet<T> GetString(Utf8JsonReader reader, TripleSet<T> tripleSet)
+    {
+        var stringLink = reader.GetString();
+
+        if (stringLink.IsNull()) return tripleSet;
+        
+        if (tripleSet.StringLinks.IsNull())
+        {
+            tripleSet.StringLinks = new[]
+            {
+                stringLink
+            };
+        }
+        else
+        {
+            tripleSet.StringLinks.ToList().Add(stringLink);
+        }
+
+        return tripleSet;
+    }
+
 }

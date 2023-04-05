@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
@@ -13,8 +14,6 @@ public class Object
     [JsonPropertyName("name")] public string? Name { get; set; }
     [JsonPropertyName("nameMap")] public Dictionary<string, string>? NameMap { get; set; }
     [JsonPropertyName("endTime")] public DateTime? EndTime { get; set; }
-    [JsonPropertyName("icon")] public Image? Icon { get; set; } // TODO Also might be Link or String-Link
-    [JsonPropertyName("image")] public Image? Image { get; set; } // TODO Also might be Link or String-Link
     [JsonPropertyName("published")] public DateTime? Published { get; set; }
     [JsonPropertyName("replies")] public Collection? Replies { get; set; }
     [JsonPropertyName("startTime")] public DateTime? StartTime { get; set; }
@@ -25,62 +24,69 @@ public class Object
     [JsonPropertyName("mediaType")] public string? MediaType { get; set; } // Must be a MIME Media Type
     [JsonPropertyName("content")] public string? Content { get; set; }
     [JsonPropertyName("contentMap")] public Dictionary<string, string>? ContentMap { get; set; }
+
     
-    
-    
+    [JsonPropertyName("icon")]
+    [JsonConverter(typeof(TripleSetConverter<Image>))]
+    public TripleSet<Image>? Icon { get; set; }
+
+    [JsonPropertyName("image")]
+    [JsonConverter(typeof(TripleSetConverter<Image>))]
+    public TripleSet<Image>? Image { get; set; }
+
     [JsonPropertyName("attachment")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Attachment { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Attachment { get; set; }
 
     [JsonPropertyName("attributedTo")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? AttributedTo { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? AttributedTo { get; set; }
 
     [JsonPropertyName("audience")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Audience { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Audience { get; set; }
 
     [JsonPropertyName("@context")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Context { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Context { get; set; }
 
     [JsonPropertyName("generator")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Generator { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Generator { get; set; }
 
     [JsonPropertyName("inReplyTo")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? InReplyTo { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? InReplyTo { get; set; }
 
     [JsonPropertyName("location")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Location { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Location { get; set; }
 
     [JsonPropertyName("preview")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Preview { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Preview { get; set; }
 
     [JsonPropertyName("tag")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Tag { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Tag { get; set; }
 
     [JsonPropertyName("url")]
     [JsonConverter(typeof(LinkConverter))]
     public Link? Url { get; set; }
-    
+
     [JsonPropertyName("to")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? To { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? To { get; set; }
 
     [JsonPropertyName("bto")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Bto { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Bto { get; set; }
 
     [JsonPropertyName("cc")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Cc { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Cc { get; set; }
 
     [JsonPropertyName("bcc")]
-    [JsonConverter(typeof(TripleSetConverter))]
-    public TripleSet? Bcc { get; set; }
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Bcc { get; set; }
 }

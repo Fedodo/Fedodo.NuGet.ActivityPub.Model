@@ -16,7 +16,7 @@ public class ObjectShould
     [InlineData("./TestData/ObjectTest3.json")]
     [InlineData("./TestData/ObjectTest4.json")]
     [InlineData("./TestData/ObjectTest5.json")]
-    public void BeSerializable(string path)
+    public void BeDeserializable(string path)
     {
         // Arrange
         var json = File.ReadAllText(path);
