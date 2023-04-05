@@ -27,19 +27,25 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="TestData\ObjectTest1.json">
+      <None Update="TestData\ObjectTests\ObjectTest1.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="TestData\ObjectTest2.json">
+      <None Update="TestData\ObjectTests\ObjectTest2.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="TestData\ObjectTest3.json">
+      <None Update="TestData\ObjectTests\ObjectTest3.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="TestData\ObjectTest4.json">
+      <None Update="TestData\ObjectTests\ObjectTest4.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="TestData\ObjectTest5.json">
+      <None Update="TestData\ObjectTests\ObjectTest5.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestData\ObjectTests\Example1.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestData\ObjectTests\AttachmentExample.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

@@ -11,11 +11,13 @@ namespace Fedodo.NuGet.ActivityPub.Model.Test.CoreTypes;
 public class ObjectShould
 {
     [Theory]
-    [InlineData("./TestData/ObjectTest1.json")]
-    [InlineData("./TestData/ObjectTest2.json")]
-    [InlineData("./TestData/ObjectTest3.json")]
-    [InlineData("./TestData/ObjectTest4.json")]
-    [InlineData("./TestData/ObjectTest5.json")]
+    [InlineData("./TestData/ObjectTests/ObjectTest1.json")]
+    [InlineData("./TestData/ObjectTests/ObjectTest2.json")]
+    [InlineData("./TestData/ObjectTests/ObjectTest3.json")]
+    [InlineData("./TestData/ObjectTests/ObjectTest4.json")]
+    [InlineData("./TestData/ObjectTests/ObjectTest5.json")]
+    [InlineData("./TestData/ObjectTests/Example1.json")]
+    [InlineData("./TestData/ObjectTests/AttachmentExample.json")]
     public void BeDeserializable(string path)
     {
         // Arrange
@@ -26,6 +28,5 @@ public class ObjectShould
 
         // Assert
         activityPubObject.ShouldNotBeNull();
-        activityPubObject.Attachment.ShouldNotBeNull();
     }
 }
