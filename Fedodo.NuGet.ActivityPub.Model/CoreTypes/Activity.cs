@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
@@ -7,14 +9,26 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Activity : Object
 {
-    [JsonPropertyName("@context")]
-    public object? Context { get; set; } = new List<object>
-    {
-        "https://www.w3.org/ns/activitystreams"
-    };
+    [JsonPropertyName("type")] public new string Type { get; set; } = "Activity";
+    [JsonPropertyName("object")] public Object? Object { get; set; }
 
-    [JsonPropertyName("id")] public Uri Id { get; set; }
-    [JsonPropertyName("type")] public string Type { get; set; }
-    [JsonPropertyName("actor")] public Uri Actor { get; set; }
-    [JsonPropertyName("object")] public object Object { get; set; }
+    [JsonPropertyName("actor")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Actor { get; set; }    
+    
+    [JsonPropertyName("target")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Target { get; set; }    
+    
+    [JsonPropertyName("result")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Result { get; set; }
+    
+    [JsonPropertyName("origin")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Origin { get; set; }
+    
+    [JsonPropertyName("instrument")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Instrument { get; set; }
 }
