@@ -1,3 +1,7 @@
+using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
+
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
 /// <summary>
@@ -5,5 +9,17 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Link
 {
+    [JsonPropertyName("type")] public string Type { get; set; } = "Link";
+    [JsonPropertyName("href")] public Uri? Href { get; set; }
+    [JsonPropertyName("rel")] public object Rel { get; set; } // TODO Link Relation https://www.w3.org/TR/activitystreams-vocabulary/#dfn-rel
+    [JsonPropertyName("mediaType")] public string? MediaType { get; set; } // Must be a MIME Media Type
+    [JsonPropertyName("name")] public string? Name { get; set; }
+    [JsonPropertyName("nameMap")] public Dictionary<string, string>? NameMap { get; set; }
+    [JsonPropertyName("hreflang")] public string Hreflang { get; set; } // [BCP47] Language Tag
+    [JsonPropertyName("height")] public int Height { get; set; }
+    [JsonPropertyName("width")] public int Width { get; set; }
     
+    [JsonPropertyName("preview")]
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Preview { get; set; }
 }
