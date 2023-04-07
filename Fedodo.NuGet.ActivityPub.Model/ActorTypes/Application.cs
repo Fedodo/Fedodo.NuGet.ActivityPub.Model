@@ -4,7 +4,7 @@ using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 namespace Fedodo.NuGet.ActivityPub.Model.ActorTypes;
 
 /// <summary>
-/// Describes a software application.
+///     Describes a software application.
 /// </summary>
 public class Application : Object
 {

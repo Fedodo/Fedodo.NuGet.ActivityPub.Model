@@ -6,8 +6,11 @@ using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 
 /// <summary>
-/// Represents a question being asked. Question objects are an extension of IntransitiveActivity. That is, the Question object is an Activity, but the direct object is the question itself and therefore it would not contain an object property.
-/// Either of the anyOf and oneOf properties may be used to express possible answers, but a Question object must not have both properties.
+///     Represents a question being asked. Question objects are an extension of IntransitiveActivity. That is, the Question
+///     object is an Activity, but the direct object is the question itself and therefore it would not contain an object
+///     property.
+///     Either of the anyOf and oneOf properties may be used to express possible answers, but a Question object must not
+///     have both properties.
 /// </summary>
 public class Question : IntransitiveActivity
 {
@@ -16,5 +19,4 @@ public class Question : IntransitiveActivity
     public TripleSet<Object>? OneOf { get; set; }
     public TripleSet<Object>? AnyOf { get; set; }
     public TripleSet<Object>? Closed { get; set; } // TODO This also might be a bool or a datetime
-    
 }

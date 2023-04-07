@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 /// <summary>
-/// An image document of any kind
+///     An image document of any kind
 /// </summary>
 public class Image : Document
 {

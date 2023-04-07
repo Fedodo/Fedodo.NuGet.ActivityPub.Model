@@ -6,7 +6,9 @@ using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
 /// <summary>
-/// Describes an object of any kind. The Object type serves as the base type for most of the other kinds of objects defined in the Activity Vocabulary, including other Core types such as Activity, IntransitiveActivity, Collection and OrderedCollection.
+///     Describes an object of any kind. The Object type serves as the base type for most of the other kinds of objects
+///     defined in the Activity Vocabulary, including other Core types such as Activity, IntransitiveActivity, Collection
+///     and OrderedCollection.
 /// </summary>
 public class Object
 {
@@ -26,7 +28,7 @@ public class Object
     [JsonPropertyName("id")] public string? Id { get; set; }
     [JsonPropertyName("contentMap")] public Dictionary<string, string>? ContentMap { get; set; }
 
-    
+
     [JsonPropertyName("icon")]
     [JsonConverter(typeof(TripleSetConverter<Image>))]
     public TripleSet<Image>? Icon { get; set; }

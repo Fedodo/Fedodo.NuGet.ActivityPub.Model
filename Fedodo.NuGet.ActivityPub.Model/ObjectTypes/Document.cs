@@ -4,7 +4,7 @@ using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 /// <summary>
-/// Represents a document of any kind.
+///     Represents a document of any kind.
 /// </summary>
 public class Document : Object
 {

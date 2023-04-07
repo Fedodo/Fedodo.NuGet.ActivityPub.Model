@@ -4,7 +4,7 @@ using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 /// <summary>
-/// Represents a logical or physical location. See 5.3 Representing Places for additional information.
+///     Represents a logical or physical location. See 5.3 Representing Places for additional information.
 /// </summary>
 public class Place : Object
 {

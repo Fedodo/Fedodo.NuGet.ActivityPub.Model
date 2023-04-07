@@ -5,7 +5,8 @@ using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
 /// <summary>
-/// Used to represent ordered subsets of items from an OrderedCollection. Refer to the Activity Streams 2.0 Core for a complete description of the OrderedCollectionPage object.
+///     Used to represent ordered subsets of items from an OrderedCollection. Refer to the Activity Streams 2.0 Core for a
+///     complete description of the OrderedCollectionPage object.
 /// </summary>
 public class OrderedCollectionPage : OrderedCollection
 {

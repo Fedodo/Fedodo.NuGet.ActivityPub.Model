@@ -6,5 +6,4 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActorTypes;
 public class Service : Object
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Service";
-
 }

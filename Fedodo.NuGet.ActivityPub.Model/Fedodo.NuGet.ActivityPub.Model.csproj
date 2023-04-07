@@ -18,15 +18,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="..\Assets\Fedodo Circle Dark.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-        <Link>Fedodo Circle Dark.png</Link>
-      </None>
+        <None Include="..\Assets\Fedodo Circle Dark.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>Fedodo Circle Dark.png</Link>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11" />
+        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11"/>
     </ItemGroup>
 
 </Project>

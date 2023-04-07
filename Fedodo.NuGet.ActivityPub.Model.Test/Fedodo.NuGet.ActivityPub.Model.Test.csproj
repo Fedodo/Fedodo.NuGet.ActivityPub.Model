@@ -8,10 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
-        <PackageReference Include="Shouldly" Version="4.1.0" />
-        <PackageReference Include="xunit" Version="2.4.2" />
+        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>
+        <PackageReference Include="Shouldly" Version="4.1.0"/>
+        <PackageReference Include="xunit" Version="2.4.2"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -23,31 +23,31 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fedodo.NuGet.ActivityPub.Model\Fedodo.NuGet.ActivityPub.Model.csproj" />
+        <ProjectReference Include="..\Fedodo.NuGet.ActivityPub.Model\Fedodo.NuGet.ActivityPub.Model.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="TestData\ObjectTests\ObjectTest1.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\ObjectTest2.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\ObjectTest3.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\ObjectTest4.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\ObjectTest5.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\Example1.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="TestData\ObjectTests\AttachmentExample.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="TestData\ObjectTests\ObjectTest1.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\ObjectTest2.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\ObjectTest3.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\ObjectTest4.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\ObjectTest5.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\Example1.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="TestData\ObjectTests\AttachmentExample.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

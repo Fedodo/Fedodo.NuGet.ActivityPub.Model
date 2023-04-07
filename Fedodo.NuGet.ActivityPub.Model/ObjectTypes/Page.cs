@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 /// <summary>
-/// Represents a Web Page.
+///     Represents a Web Page.
 /// </summary>
 public class Page : Document
 {

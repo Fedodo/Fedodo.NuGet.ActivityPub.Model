@@ -4,7 +4,8 @@ using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 
 /// <summary>
-/// Indicates that the actor likes, recommends or endorses the object. The target and origin typically have no defined meaning.
+///     Indicates that the actor likes, recommends or endorses the object. The target and origin typically have no defined
+///     meaning.
 /// </summary>
 public class Like : Activity
 {
