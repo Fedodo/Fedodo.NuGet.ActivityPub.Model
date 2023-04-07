@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
@@ -7,9 +9,22 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Collection : Object
 {
-    [JsonPropertyName("@context")] public string Context { get; set; } = "https://www.w3.org/ns/activitystreams";
-    [JsonPropertyName("summary")] public string? Summary { get; set; }
-    [JsonPropertyName("type")] public string Type { get; set; } = "Collection";
-    [JsonPropertyName("totalItems")] public int TotalItems => Items.Count();
-    [JsonPropertyName("items")] public IEnumerable<Object> Items { get; set; }
+    [JsonPropertyName("type")] public new string Type { get; set; } = "Collection";
+    [JsonPropertyName("totalItems")] public int TotalItems => Items?.Links?.Count() ?? 0 + Items?.Objects?.Count() ?? 0 + Items?.StringLinks?.Count() ?? 0;
+    
+    [JsonPropertyName("items")] 
+    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    public TripleSet<Object>? Items { get; set; }
+
+    [JsonPropertyName("current")] 
+    [JsonConverter(typeof(TripleSetConverter<CollectionPage>))]
+    public TripleSet<CollectionPage>? Current { get; set; }        
+    
+    [JsonPropertyName("first")] 
+    [JsonConverter(typeof(TripleSetConverter<CollectionPage>))]
+    public TripleSet<CollectionPage>? First { get; set; }        
+    
+    [JsonPropertyName("last")] 
+    [JsonConverter(typeof(TripleSetConverter<CollectionPage>))]
+    public TripleSet<CollectionPage>? Last { get; set; }     
 }
