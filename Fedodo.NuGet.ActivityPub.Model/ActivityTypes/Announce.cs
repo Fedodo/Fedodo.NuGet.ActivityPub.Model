@@ -7,7 +7,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 ///     Indicates that the actor is calling the target's attention the object.
 ///     The origin typically has no defined meaning.
 /// </summary>
-public class Announce : Activity
+public class Announce<T> : Activity<T> where T : CoreTypes.Object
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Announce";
 }

@@ -10,10 +10,11 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 ///     important to note that the Activity type itself does not carry any specific semantics about the kind of action
 ///     being taken.
 /// </summary>
-public class Activity : Object
+/// <typeparam name="T">Describes the type of the transferred Object. T must be of Type Object.</typeparam>
+public class Activity<T> : Object where T : Object
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Activity";
-    [JsonPropertyName("object")] public Object? Object { get; set; }
+    [JsonPropertyName("object")] public T? Object { get; set; }
 
     [JsonPropertyName("actor")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
