@@ -9,4 +9,10 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 public class Note : Object
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Note";
+    [JsonPropertyName("sensitive")] public bool? Sensitive { get; set; }
+    
+    // Likes and Shares are not used like this by Mastodon and Pixelfed...
+    // Keep this in mind.
+    [JsonPropertyName("likes")] public Uri? Likes { get; set; }
+    [JsonPropertyName("shares")] public Uri? Shares { get; set; }
 }
