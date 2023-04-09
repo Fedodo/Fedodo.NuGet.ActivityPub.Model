@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text.Json;
-using Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Shouldly;
@@ -20,11 +19,8 @@ public class ActivityShould
         // Act
         var create = JsonSerializer.Deserialize<Activity<Object>>(json);
 
-        if (create?.Object?.Type == "Note")
-        {
-            note = JsonSerializer.Deserialize<Activity<Note>>(json);
-        }
-        
+        if (create?.Object?.Type == "Note") note = JsonSerializer.Deserialize<Activity<Note>>(json);
+
         // Assert
         create.ShouldNotBeNull();
         note.ShouldNotBeNull();
