@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 
@@ -9,7 +8,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 ///     the target would need to be determined implicitly by context. The origin can be used to identify the context from
 ///     which the object originated.
 /// </summary>
-public class Add<T> : Activity<T> where T : Object
+public class Add : Activity
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Add";
 }

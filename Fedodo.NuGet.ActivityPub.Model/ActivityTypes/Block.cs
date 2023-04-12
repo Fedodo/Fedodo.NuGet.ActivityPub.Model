@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 
@@ -8,7 +7,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 ///     support social systems that allow one user to block activities or content of other users. The target and origin
 ///     typically have no defined meaning.
 /// </summary>
-public class Block<T> : Ignore<T> where T : Object
+public class Block : Ignore
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Block";
 }

@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 
@@ -10,7 +9,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 ///     reason, might choose to undo that like at some later point in time).
 ///     The target and origin typically have no defined meaning.
 /// </summary>
-public class Undo<T> : Activity<T> where T : Object
+public class Undo : Activity
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Undo";
 }
