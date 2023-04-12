@@ -15,12 +15,12 @@ public class ActivityShould
     {
         // Arrange
         var json = File.ReadAllText("./TestData/ActivityTests/Create.json");
-        Activity? note = null;
+        Note? note = null;
 
         // Act
         var create = JsonSerializer.Deserialize<Activity>(json);
 
-        if (create?.Object?.Type == "Note") note = JsonSerializer.Deserialize<Activity>(json);
+        note = (Note?)create?.Object;
 
         // Assert
         create.ShouldNotBeNull();
