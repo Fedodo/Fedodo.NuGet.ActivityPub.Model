@@ -5,7 +5,7 @@ using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
-public class TripleSetConverter<T> : JsonConverter<TripleSet<T>>
+public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 {
     public override TripleSet<T>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -70,7 +70,13 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>>
     /// <returns>Triple Set</returns>
     private TripleSet<T> GetObject(ref Utf8JsonReader reader, TripleSet<T> tripleSet)
     {
-        var apObject = JsonSerializer.Deserialize<T>(ref reader);
+        var apObject = JsonSerializer.Deserialize<T>(ref reader, options: new JsonSerializerOptions()
+        {
+            Converters =
+            {
+                new TypeConverter<T>()
+            }
+        });
 
         if (apObject.IsNull()) return tripleSet;
 

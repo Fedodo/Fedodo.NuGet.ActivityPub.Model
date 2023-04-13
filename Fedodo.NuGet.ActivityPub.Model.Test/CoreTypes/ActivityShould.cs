@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
@@ -88,6 +89,7 @@ public class ActivityShould
         """;
         Note? note = null;
         Create? createActivity = null;
+        Document? document = null;
 
         // Act
         var create = JsonSerializer.Deserialize<Activity>(json, options: new JsonSerializerOptions()
@@ -99,6 +101,7 @@ public class ActivityShould
         });
         note = (Note?)create?.Object;
         createActivity = (Create)create!;
+        document = (Document)create?.Object?.Attachment?.Objects?.First()!;
 
         // Assert
         create.ShouldNotBeNull();
@@ -122,7 +125,12 @@ public class ActivityShould
         note?.Cc?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper/followers");
         note?.Sensitive.ShouldBe(false);
         note?.Content.ShouldBe("<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>");
-        // TODO ContentMap, Replies, Tags, Attachments
+        note?.ContentMap?.ShouldContainKeyAndValue("de", "<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>");
+        note?.Attachment?.Objects?.First().ShouldBeOfType<Document>();
         note?.Url?.Href.ShouldBe(new Uri("https://social.heise.de/@heisedeveloper/109920532625809043"));
+
+        document.Type.ShouldBe("Document");
+        document?.Url?.Href.ShouldBe(new Uri("https://social.heise.de/system/media_attachments/files/109/920/532/619/836/925/original/fb52dfc289817fa2.jpeg"));
+        document?.MediaType.ShouldBe("image/jpeg");
     }
 }
