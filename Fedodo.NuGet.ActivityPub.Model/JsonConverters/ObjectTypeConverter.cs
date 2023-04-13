@@ -1,7 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommonExtensions;
-using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
@@ -19,15 +18,12 @@ public class ObjectTypeConverter : JsonConverter<CoreTypes.Object>
 
         var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader);
 
-        // if (tempObject.IsNotNull() && tempObject.Type.IsNotNullOrEmpty())
-        // {
-        //     var T = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type);
-        //     var realObject = JsonSerializer.Deserialize<T>(ref reader);
-        //
-        //     return realObject;
-        // }
-
-        return null;
+        if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty()) return null;
+        
+        var T = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type);
+        var realObject = JsonSerializer.Deserialize(ref reader, T) as Object;
+        
+        return realObject;
     }
 
     public override void Write(Utf8JsonWriter writer, Object value, JsonSerializerOptions options)
