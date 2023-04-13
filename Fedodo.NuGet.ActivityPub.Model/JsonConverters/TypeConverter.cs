@@ -5,12 +5,12 @@ using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
-public class ObjectTypeConverter : JsonConverter<CoreTypes.Object>
+public class TypeConverter<T> : JsonConverter<T> where T : class
 {
-    public override Object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var tempReader = reader;
-        
+
         if (reader.TokenType != JsonTokenType.StartObject)
         {
             throw new ArgumentException("The object parameter can only be an object");
@@ -19,14 +19,15 @@ public class ObjectTypeConverter : JsonConverter<CoreTypes.Object>
         var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader);
 
         if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty()) return null;
-        
-        var T = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type);
-        var realObject = JsonSerializer.Deserialize(ref reader, T) as Object;
-        
+
+        var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type) ??
+                   Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type);
+        var realObject = (T)JsonSerializer.Deserialize(ref reader, type);
+
         return realObject;
     }
 
-    public override void Write(Utf8JsonWriter writer, Object value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
         //TODO
         throw new NotImplementedException();

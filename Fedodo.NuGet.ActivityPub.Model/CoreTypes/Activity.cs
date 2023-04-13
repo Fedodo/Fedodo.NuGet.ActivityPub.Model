@@ -15,7 +15,7 @@ public class Activity : Object
     [JsonPropertyName("type")] public new string Type { get; set; } = "Activity";
     
     [JsonPropertyName("object")] 
-    [JsonConverter(typeof(ObjectTypeConverter))]
+    [JsonConverter(typeof(TypeConverter<Object>))]
     public Object? Object { get; set; }
 
     [JsonPropertyName("actor")]
