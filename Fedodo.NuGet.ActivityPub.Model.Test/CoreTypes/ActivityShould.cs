@@ -97,23 +97,32 @@ public class ActivityShould
             new TypeConverter<Activity>()
           }
         });
-
         note = (Note?)create?.Object;
+        createActivity = (Create)create!;
 
         // Assert
         create.ShouldNotBeNull();
+        createActivity.ShouldNotBeNull();
         create.GetType().ShouldBe(typeof(Create));
-        createActivity = (Create)create;
-        createActivity?.Type.ShouldBe("Create");
-        createActivity?.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/activity");
-        createActivity?.Actor?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper");
-        createActivity?.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
-        createActivity?.To?.StringLinks?.ShouldContain("https://www.w3.org/ns/activitystreams#Public");
-        createActivity?.Cc?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper/followers");
-        createActivity?.Object.ShouldBeOfType<Note>();
-        createActivity?.Object?.GetType().ShouldBe(typeof(Note));
+        createActivity.Type.ShouldBe("Create");
+        createActivity.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/activity");
+        createActivity.Actor?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper");
+        createActivity.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
+        createActivity.To?.StringLinks?.ShouldContain("https://www.w3.org/ns/activitystreams#Public");
+        createActivity.Cc?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper/followers");
+        createActivity.Object.ShouldBeOfType<Note>();
+        createActivity.Object?.GetType().ShouldBe(typeof(Note));
         
         note.ShouldNotBeNull();
         note.Type.ShouldBe("Note");
+        note.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043");
+        note.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
+        note?.AttributedTo?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper");
+        note?.To?.StringLinks?.ShouldContain("https://www.w3.org/ns/activitystreams#Public");
+        note?.Cc?.StringLinks?.ShouldContain("https://social.heise.de/users/heisedeveloper/followers");
+        note?.Sensitive.ShouldBe(false);
+        note?.Content.ShouldBe("<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>");
+        // TODO ContentMap, Replies, Tags, Attachments
+        note?.Url?.Href.ShouldBe(new Uri("https://social.heise.de/@heisedeveloper/109920532625809043"));
     }
 }
