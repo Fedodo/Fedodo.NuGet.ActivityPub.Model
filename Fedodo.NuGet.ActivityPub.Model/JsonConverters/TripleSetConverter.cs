@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommonExtensions;
+using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
@@ -70,23 +71,50 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     /// <returns>Triple Set</returns>
     private TripleSet<T> GetObject(ref Utf8JsonReader reader, TripleSet<T> tripleSet)
     {
-        var apObject = JsonSerializer.Deserialize<T>(ref reader, options: new JsonSerializerOptions()
+        var tempReader = reader;
+        
+        var link = JsonSerializer.Deserialize<Link>(ref tempReader, options: new JsonSerializerOptions()
         {
             Converters =
             {
-                new TypeConverter<T>()
+                new LinkTypeConverter<Link>()
             }
         });
 
-        if (apObject.IsNull()) return tripleSet;
-
-        if (tripleSet.Objects.IsNull())
-            tripleSet.Objects = new[]
+        if (link.IsNull())
+        {
+            var apObject = JsonSerializer.Deserialize<T>(ref reader, options: new JsonSerializerOptions()
             {
-                apObject
-            };
+                Converters =
+                {
+                    new ObjectTypeConverter<T>()
+                }
+            });
+
+            if (apObject.IsNull()) return tripleSet;
+
+            if (tripleSet.Objects.IsNull())
+                tripleSet.Objects = new[]
+                {
+                    apObject
+                };
+            else
+                tripleSet.Objects.ToList().Add(apObject);
+        }
         else
-            tripleSet.Objects.ToList().Add(apObject);
+        {
+            if (tripleSet.Links.IsNull())
+            {
+                tripleSet.Links = new[]
+                {
+                    link
+                };
+            }
+            else
+            {
+                tripleSet.Links.ToList().Add(link);
+            }
+        }
 
         return tripleSet;
     }

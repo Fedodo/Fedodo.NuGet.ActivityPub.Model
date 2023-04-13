@@ -5,6 +5,7 @@ using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
+using Fedodo.NuGet.ActivityPub.Model.LinkTypes;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Shouldly;
 using Xunit;
@@ -96,7 +97,7 @@ public class ActivityShould
         {
           Converters =
           {
-            new TypeConverter<Activity>()
+            new ObjectTypeConverter<Activity>()
           }
         });
         note = (Note?)create?.Object;
@@ -128,7 +129,8 @@ public class ActivityShould
         note?.ContentMap?.ShouldContainKeyAndValue("de", "<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>");
         note?.Attachment?.Objects?.First().ShouldBeOfType<Document>();
         note?.Url?.Href.ShouldBe(new Uri("https://social.heise.de/@heisedeveloper/109920532625809043"));
-
+        note?.Tag?.Links?.First().ShouldBeOfType<Hashtag>();
+        
         document.Type.ShouldBe("Document");
         document?.Url?.Href.ShouldBe(new Uri("https://social.heise.de/system/media_attachments/files/109/920/532/619/836/925/original/fb52dfc289817fa2.jpeg"));
         document?.MediaType.ShouldBe("image/jpeg");

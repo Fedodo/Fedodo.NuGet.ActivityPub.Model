@@ -1,11 +1,11 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommonExtensions;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
+using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
-public class TypeConverter<T> : JsonConverter<T> where T : class
+public class LinkTypeConverter<T> : JsonConverter<T> where T : class
 {
     public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -16,16 +16,21 @@ public class TypeConverter<T> : JsonConverter<T> where T : class
             throw new ArgumentException("The object parameter can only be an object");
         }
 
-        var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader);
+        var tempObject = JsonSerializer.Deserialize<Link>(ref tempReader);
 
         if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty()) return null;
 
-        var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type) ??
-                   Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type);
+        var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.LinkTypes." + tempObject.Type);
+
+        if (tempObject.Type == "Link")
+        {
+            type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.CoreTypes.Link");
+        }
 
         if (type.IsNull())
         {
-            return JsonSerializer.Deserialize<T>(ref reader);
+            JsonSerializer.Deserialize<object>(ref reader);
+            return null;
         }
         
         var realObject = (T)JsonSerializer.Deserialize(ref reader, type);
@@ -35,7 +40,8 @@ public class TypeConverter<T> : JsonConverter<T> where T : class
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
-        //TODO
+        // TODO
+        
         throw new NotImplementedException();
     }
 }
