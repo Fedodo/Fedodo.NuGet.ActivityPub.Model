@@ -13,7 +13,10 @@ public class LinkConverter : JsonConverter<Link>
         switch (reader.TokenType)
         {
             case JsonTokenType.StartObject:
-                link = JsonSerializer.Deserialize<Link>(ref reader);
+                link = JsonSerializer.Deserialize<Link>(ref reader, new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true,
+                });
                 break;
             case JsonTokenType.String:
                 link.Href = new Uri(reader.GetString()!);

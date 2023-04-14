@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
@@ -11,7 +12,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 ///     containing object) to the resource identified by the href. Properties of the Link are properties of the reference
 ///     as opposed to properties of the resource.
 /// </summary>
-public class Link
+public class Link : IType
 {
     [JsonPropertyName("type")] public string Type { get; set; } = "Link";
     [JsonPropertyName("href")] public Uri? Href { get; set; }

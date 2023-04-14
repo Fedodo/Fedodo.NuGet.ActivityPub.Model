@@ -16,19 +16,29 @@ public class ObjectTypeConverter<T> : JsonConverter<T> where T : class
             throw new ArgumentException("The object parameter can only be an object");
         }
 
-        var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader);
+        var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader, new JsonSerializerOptions()
+        {
+            PropertyNameCaseInsensitive = true,
+        });
 
-        if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty()) return null;
+        if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty())
+        {
+            return null;
+        }
 
         var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type) ??
-                   Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type);
+                   Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type) ??
+                   Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActorTypes." + tempObject.Type);
 
         if (type.IsNull())
         {
             return JsonSerializer.Deserialize<T>(ref reader);
         }
-        
-        var realObject = (T)JsonSerializer.Deserialize(ref reader, type);
+
+        var realObject = (T)JsonSerializer.Deserialize(ref reader, type, options: new JsonSerializerOptions()
+        {
+            PropertyNameCaseInsensitive = true,
+        })!;
 
         return realObject;
     }

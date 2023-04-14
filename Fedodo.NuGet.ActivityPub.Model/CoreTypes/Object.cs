@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
@@ -10,7 +11,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 ///     defined in the Activity Vocabulary, including other Core types such as Activity, IntransitiveActivity, Collection
 ///     and OrderedCollection.
 /// </summary>
-public class Object
+public class Object : IType
 {
     [JsonPropertyName("type")] public string Type { get; set; } = "Object";
     [JsonPropertyName("name")] public string? Name { get; set; }

@@ -75,6 +75,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         
         var link = JsonSerializer.Deserialize<Link>(ref tempReader, options: new JsonSerializerOptions()
         {
+            PropertyNameCaseInsensitive = true,
             Converters =
             {
                 new LinkTypeConverter<Link>()
@@ -85,6 +86,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         {
             var apObject = JsonSerializer.Deserialize<T>(ref reader, options: new JsonSerializerOptions()
             {
+                PropertyNameCaseInsensitive = true,
                 Converters =
                 {
                     new ObjectTypeConverter<T>()
