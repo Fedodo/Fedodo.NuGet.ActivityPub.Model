@@ -14,7 +14,6 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Link : IType
 {
-    [JsonPropertyName("type")] public string Type { get; set; } = "Link";
     [JsonPropertyName("href")] public Uri? Href { get; set; }
 
     [JsonPropertyName("rel")]
@@ -30,4 +29,6 @@ public class Link : IType
     [JsonPropertyName("preview")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
     public TripleSet<Object>? Preview { get; set; }
+
+    [JsonPropertyName("type")] public string Type { get; set; } = "Link";
 }

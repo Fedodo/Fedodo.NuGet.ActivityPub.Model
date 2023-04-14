@@ -40,18 +40,21 @@ A Fedodo NuGet containing the ActivityPub model.
 
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)  
 ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)  
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)  
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 <br>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing ✨
 
-If you have any ideas or want to contribute yourself... go for it. I really appreciate it if some of you have cool ideas🚀
+If you have any ideas or want to contribute yourself... go for it. I really appreciate it if some of you have cool
+ideas🚀
 
 <br>
 
 <!-- LICENSE -->
+
 ## License 📝
 
 The code is distributed under the AGPL-3.0 License. See `LICENSE` for more information.
@@ -60,18 +63,29 @@ The code is distributed under the AGPL-3.0 License. See `LICENSE` for more infor
 
 <!-- ACKNOWLEDGMENTS -->
 <!-- TODO Add your acknowledgments -->
+
 ## Acknowledgments 🙏
 
 - [LNA-DEV README-Template](https://github.com/lna-dev/README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/Fedodo/Fedodo.NuGet.ActivityPub.Model.svg?style=for-the-badge
+
 [contributors-url]: https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/graphs/contributors
+
 [forks-shield]: https://img.shields.io/github/forks/Fedodo/Fedodo.NuGet.ActivityPub.Model.svg?style=for-the-badge
+
 [forks-url]: https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/network/members
+
 [stars-shield]: https://img.shields.io/github/stars/Fedodo/Fedodo.NuGet.ActivityPub.Model.svg?style=for-the-badge
+
 [stars-url]: https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/stargazers
+
 [issues-shield]: https://img.shields.io/github/issues/Fedodo/Fedodo.NuGet.ActivityPub.Model.svg?style=for-the-badge
+
 [issues-url]: https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/issues
+
 [license-shield]: https://img.shields.io/github/license/Fedodo/Fedodo.NuGet.ActivityPub.Model.svg?style=for-the-badge
+
 [license-url]: https://github.com/Fedodo/Fedodo.NuGet.ActivityPub.Model/blob/master/LICENSE

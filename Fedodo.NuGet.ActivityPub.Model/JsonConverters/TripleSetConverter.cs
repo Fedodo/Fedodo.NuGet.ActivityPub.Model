@@ -72,8 +72,8 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     private TripleSet<T> GetObject(ref Utf8JsonReader reader, TripleSet<T> tripleSet)
     {
         var tempReader = reader;
-        
-        var link = JsonSerializer.Deserialize<Link>(ref tempReader, options: new JsonSerializerOptions()
+
+        var link = JsonSerializer.Deserialize<Link>(ref tempReader, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             Converters =
@@ -84,7 +84,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 
         if (link.IsNull())
         {
-            var apObject = JsonSerializer.Deserialize<T>(ref reader, options: new JsonSerializerOptions()
+            var apObject = JsonSerializer.Deserialize<T>(ref reader, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 Converters =
@@ -106,16 +106,12 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         else
         {
             if (tripleSet.Links.IsNull())
-            {
                 tripleSet.Links = new[]
                 {
                     link
                 };
-            }
             else
-            {
                 tripleSet.Links.ToList().Add(link);
-            }
         }
 
         return tripleSet;

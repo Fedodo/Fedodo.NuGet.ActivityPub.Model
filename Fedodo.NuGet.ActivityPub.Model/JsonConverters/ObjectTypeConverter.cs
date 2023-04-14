@@ -12,32 +12,24 @@ public class ObjectTypeConverter<T> : JsonConverter<T> where T : class
         var tempReader = reader;
 
         if (reader.TokenType != JsonTokenType.StartObject)
-        {
             throw new ArgumentException("The object parameter can only be an object");
-        }
 
-        var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader, new JsonSerializerOptions()
+        var tempObject = JsonSerializer.Deserialize<Object>(ref tempReader, new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true,
+            PropertyNameCaseInsensitive = true
         });
 
-        if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty())
-        {
-            return null;
-        }
+        if (!tempObject.IsNotNull() || !tempObject.Type.IsNotNullOrEmpty()) return null;
 
         var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.ObjectTypes." + tempObject.Type) ??
                    Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type) ??
                    Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActorTypes." + tempObject.Type);
 
-        if (type.IsNull())
-        {
-            return JsonSerializer.Deserialize<T>(ref reader);
-        }
+        if (type.IsNull()) return JsonSerializer.Deserialize<T>(ref reader);
 
-        var realObject = (T)JsonSerializer.Deserialize(ref reader, type, options: new JsonSerializerOptions()
+        var realObject = (T)JsonSerializer.Deserialize(ref reader, type, new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true,
+            PropertyNameCaseInsensitive = true
         })!;
 
         return realObject;

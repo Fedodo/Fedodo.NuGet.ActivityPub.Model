@@ -13,7 +13,6 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Object : IType
 {
-    [JsonPropertyName("type")] public string Type { get; set; } = "Object";
     [JsonPropertyName("name")] public string? Name { get; set; }
     [JsonPropertyName("nameMap")] public Dictionary<string, string>? NameMap { get; set; }
     [JsonPropertyName("endTime")] public DateTime? EndTime { get; set; }
@@ -93,4 +92,6 @@ public class Object : IType
     [JsonPropertyName("bcc")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
     public TripleSet<Object>? Bcc { get; set; }
+
+    [JsonPropertyName("type")] public string Type { get; set; } = "Object";
 }

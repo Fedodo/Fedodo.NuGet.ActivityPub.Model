@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
@@ -183,10 +182,10 @@ public class ActivityShould
         CollectionPage? collectionPage = null;
 
         // Act
-        var create = JsonSerializer.Deserialize<Activity>(json, options: new JsonSerializerOptions()
+        var create = JsonSerializer.Deserialize<Activity>(json, new JsonSerializerOptions
         {
-          PropertyNameCaseInsensitive = true,
-          Converters =
+            PropertyNameCaseInsensitive = true,
+            Converters =
             {
                 new ObjectTypeConverter<Activity>()
             }

@@ -1,9 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommonExtensions;
-using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.Helpers;
-using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 
 namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
@@ -14,13 +12,11 @@ public class LinkTypeConverter<T> : JsonConverter<T> where T : class
         var tempReader = reader;
 
         if (reader.TokenType != JsonTokenType.StartObject)
-        {
             throw new ArgumentException("The object parameter can only be an object");
-        }
 
-        var tempObject = JsonSerializer.Deserialize<TypeHelper>(ref tempReader, new JsonSerializerOptions()
+        var tempObject = JsonSerializer.Deserialize<TypeHelper>(ref tempReader, new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true,
+            PropertyNameCaseInsensitive = true
         })!;
 
         if (tempObject.IsNull() || tempObject.Type.IsNull())
@@ -31,10 +27,7 @@ public class LinkTypeConverter<T> : JsonConverter<T> where T : class
 
         var type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.LinkTypes." + tempObject.Type);
 
-        if (tempObject.Type == "Link")
-        {
-            type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.CoreTypes.Link");
-        }
+        if (tempObject.Type == "Link") type = Type.GetType("Fedodo.NuGet.ActivityPub.Model.CoreTypes.Link");
 
         if (type.IsNull())
         {
@@ -42,9 +35,9 @@ public class LinkTypeConverter<T> : JsonConverter<T> where T : class
             return null;
         }
 
-        var realObject = (T)JsonSerializer.Deserialize(ref reader, type, new JsonSerializerOptions()
+        var realObject = (T)JsonSerializer.Deserialize(ref reader, type, new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true,
+            PropertyNameCaseInsensitive = true
         })!;
 
         return realObject;

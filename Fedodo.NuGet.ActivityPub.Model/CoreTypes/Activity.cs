@@ -13,8 +13,8 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 public class Activity : Object
 {
     [JsonPropertyName("type")] public new string Type { get; set; } = "Activity";
-    
-    [JsonPropertyName("object")] 
+
+    [JsonPropertyName("object")]
     [JsonConverter(typeof(ObjectTypeConverter<Object>))]
     public Object? Object { get; set; }
 

@@ -1,6 +1,5 @@
 using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.ActorTypes;
-using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Xunit;
 
@@ -12,7 +11,7 @@ public class ActorShould
     public void DeserializeActor()
     {
         // Arrange
-        var json = 
+        var json =
             """
                 {
                   "ID": "https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959",
@@ -39,7 +38,7 @@ public class ActorShould
             """;
 
         // Act
-        var create = JsonSerializer.Deserialize<Actor>(json, options: new JsonSerializerOptions()
+        var create = JsonSerializer.Deserialize<Actor>(json, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             Converters =
