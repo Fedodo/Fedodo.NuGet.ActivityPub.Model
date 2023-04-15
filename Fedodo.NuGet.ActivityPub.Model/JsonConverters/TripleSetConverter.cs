@@ -48,7 +48,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     public override void Write(Utf8JsonWriter writer, TripleSet<T> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
-        
+
         // TODO
 
         // writer.WriteStartArray();

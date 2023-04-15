@@ -27,4 +27,18 @@ public class ObjectShould
         // Assert
         activityPubObject.ShouldNotBeNull();
     }
+
+    [Fact]
+    public void SerializeObject()
+    {
+        // Arrange
+        var json = File.ReadAllText("./TestData/ObjectTests/ObjectTest3.json");
+        var activityPubObject = JsonSerializer.Deserialize<Object>(json);
+
+        // Act
+        var resultJson = JsonSerializer.Serialize(activityPubObject);
+
+        // Assert
+        resultJson.ShouldBe(json);
+    }
 }
