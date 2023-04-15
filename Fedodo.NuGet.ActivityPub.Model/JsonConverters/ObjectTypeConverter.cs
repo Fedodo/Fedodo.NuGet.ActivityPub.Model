@@ -25,7 +25,11 @@ public class ObjectTypeConverter<T> : JsonConverter<T> where T : class
                    Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActivityTypes." + tempObject.Type) ??
                    Type.GetType("Fedodo.NuGet.ActivityPub.Model.ActorTypes." + tempObject.Type);
 
-        if (type.IsNull()) return JsonSerializer.Deserialize<T>(ref reader);
+        if (type.IsNull())
+            return JsonSerializer.Deserialize<T>(ref reader, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            })!;
 
         var realObject = (T)JsonSerializer.Deserialize(ref reader, type, new JsonSerializerOptions
         {

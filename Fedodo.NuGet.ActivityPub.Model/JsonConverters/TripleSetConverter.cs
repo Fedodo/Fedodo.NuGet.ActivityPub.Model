@@ -48,6 +48,8 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     public override void Write(Utf8JsonWriter writer, TripleSet<T> value, JsonSerializerOptions options)
     {
         throw new NotImplementedException();
+        
+        // TODO
 
         // writer.WriteStartArray();
         //
@@ -96,22 +98,34 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
             if (apObject.IsNull()) return tripleSet;
 
             if (tripleSet.Objects.IsNull())
+            {
                 tripleSet.Objects = new[]
                 {
                     apObject
                 };
+            }
             else
-                tripleSet.Objects.ToList().Add(apObject);
+            {
+                var objectList = tripleSet.Objects.ToList();
+                objectList.Add(apObject);
+                tripleSet.Objects = objectList;
+            }
         }
         else
         {
             if (tripleSet.Links.IsNull())
+            {
                 tripleSet.Links = new[]
                 {
                     link
                 };
+            }
             else
-                tripleSet.Links.ToList().Add(link);
+            {
+                var linkList = tripleSet.Links.ToList();
+                linkList.Add(link);
+                tripleSet.Links = linkList;
+            }
         }
 
         return tripleSet;
@@ -130,12 +144,18 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         if (stringLink.IsNull()) return tripleSet;
 
         if (tripleSet.StringLinks.IsNull())
+        {
             tripleSet.StringLinks = new[]
             {
                 stringLink
             };
+        }
         else
-            tripleSet.StringLinks.ToList().Add(stringLink);
+        {
+            var stringLinks = tripleSet.StringLinks.ToList();
+            stringLinks.Add(stringLink);
+            tripleSet.StringLinks = stringLinks;
+        }
 
         return tripleSet;
     }

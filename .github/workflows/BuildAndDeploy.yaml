@@ -3,7 +3,7 @@ name: "Build and deploy to nuget.org"
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -14,6 +14,6 @@ jobs:
         with:
           PROJECT_PATH: "Fedodo.NuGet.ActivityPub.Model/Fedodo.NuGet.ActivityPub.Model.csproj"
           NUGET_SOURCE_URL: "https://api.nuget.org/v3/index.json"
-          VERSION: 1.0.${{ github.run_number }}
+          VERSION: 1.0.${{ github.run_number }} # TODO Set Version to 2.X
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output

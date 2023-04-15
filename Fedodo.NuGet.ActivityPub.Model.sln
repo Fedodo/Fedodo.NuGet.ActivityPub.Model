@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{DF0EA8
 		README.md = README.md
 		LICENSE = LICENSE
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		.github\workflows\BuildAndDeploy.yaml = .github\workflows\BuildAndDeploy.yaml
 	EndProjectSection
 EndProject
 Global
