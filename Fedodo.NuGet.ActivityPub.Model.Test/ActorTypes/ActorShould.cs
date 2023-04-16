@@ -1,6 +1,5 @@
 using System;
 using System.Text.Json;
-using System.Text.Json.JsonDiffPatch;
 using System.Text.Json.JsonDiffPatch.Xunit;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -115,13 +114,13 @@ public class ActorShould
         })!;
 
         // Act
-        var resultJson = JsonSerializer.Serialize(person, new JsonSerializerOptions()
+        var resultJson = JsonSerializer.Serialize(person, new JsonSerializerOptions
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
         var resultObject = JsonNode.Parse(resultJson);
 
         // Assert
-        JsonAssert.Equal(inputObject, resultObject, output: true);
+        JsonAssert.Equal(inputObject, resultObject, true);
     }
 }

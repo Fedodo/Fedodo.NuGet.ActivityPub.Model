@@ -40,13 +40,13 @@ public class ObjectShould
         var activityPubObject = JsonSerializer.Deserialize<Object>(json);
 
         // Act
-        var resultJson = JsonSerializer.Serialize(activityPubObject, new JsonSerializerOptions()
+        var resultJson = JsonSerializer.Serialize(activityPubObject, new JsonSerializerOptions
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
         var resultObject = JsonNode.Parse(resultJson);
 
         // Assert
-        JsonAssert.Equal(inputObject, resultObject, output: true);
+        JsonAssert.Equal(inputObject, resultObject, true);
     }
 }

@@ -332,13 +332,13 @@ public class ActivityShould
         });
 
         // Act
-        var resultJson = JsonSerializer.Serialize(create, new JsonSerializerOptions()
+        var resultJson = JsonSerializer.Serialize(create, new JsonSerializerOptions
         {
-          DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
         var resultObject = JsonNode.Parse(resultJson);
 
         // Assert
-        JsonAssert.Equal(inputObject, resultObject, output: true);
+        JsonAssert.Equal(inputObject, resultObject, true);
     }
 }
