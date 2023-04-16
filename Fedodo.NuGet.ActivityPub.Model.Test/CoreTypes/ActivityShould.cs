@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.JsonDiffPatch.Xunit;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
@@ -317,6 +320,7 @@ public class ActivityShould
                       }
                     }
                 """;
+        var inputObject = JsonNode.Parse(json);
 
         var create = JsonSerializer.Deserialize<Activity>(json, new JsonSerializerOptions
         {
@@ -328,9 +332,13 @@ public class ActivityShould
         });
 
         // Act
-        var resultJson = JsonSerializer.Serialize(create);
+        var resultJson = JsonSerializer.Serialize(create, new JsonSerializerOptions()
+        {
+          DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+        var resultObject = JsonNode.Parse(resultJson);
 
         // Assert
-        resultJson.ShouldBe(json);
+        JsonAssert.Equal(inputObject, resultObject, output: true);
     }
 }

@@ -28,7 +28,6 @@ public class LinkConverter : JsonConverter<Link>
 
     public override void Write(Utf8JsonWriter writer, Link value, JsonSerializerOptions options)
     {
-        // TODO
-        throw new NotImplementedException();
+        JsonSerializer.Serialize(writer, value);
     }
 }

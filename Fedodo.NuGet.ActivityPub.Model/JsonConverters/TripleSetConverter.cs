@@ -47,22 +47,55 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 
     public override void Write(Utf8JsonWriter writer, TripleSet<T> value, JsonSerializerOptions options)
     {
-        JsonSerializer.Serialize(writer, value);
-        
-        // TODO
+        if (value.IsNull())
+        {
+            return;
+        }
 
-        // writer.WriteStartArray();
-        //
-        // foreach (var item in value)
-        // {
-        //     writer.WriteStartObject();
-        //     writer.WriteString("type", item.Type);
-        //     writer.WriteString("content", item.Content);
-        //     writer.WriteString("url", item.Url.ToString());
-        //     writer.WriteEndObject();
-        // }
-        //
-        // writer.WriteEndArray();
+        // Only write one object if the count is 1 and not an array
+        if (value.StringLinks.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.Objects?.Count() == 1)
+        {
+            JsonSerializer.Serialize(writer, value.Objects.First());
+            return;
+        }
+        if (value.StringLinks.IsNullOrEmpty() && value.Objects.IsNullOrEmpty() && value.Links?.Count() == 1)
+        {
+            JsonSerializer.Serialize(writer, value.Links.First());
+            return;
+        }
+        if (value.Objects.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.StringLinks?.Count() == 1)
+        {
+            writer.WriteStringValue(value.StringLinks.First());
+            return;
+        }
+
+        writer.WriteStartArray();
+
+        if (value.StringLinks.IsNotNullOrEmpty())
+        {
+            foreach (var item in value.StringLinks)
+            {
+                writer.WriteStringValue(item);
+            }
+        }
+
+        if (value.Objects.IsNotNullOrEmpty())
+        {
+            foreach (var item in value.Objects)
+            {
+                JsonSerializer.Serialize(writer, item);
+            }
+        }
+
+        if (value.Links.IsNotNullOrEmpty())
+        {
+            foreach (var item in value.Links)
+            {
+                JsonSerializer.Serialize(writer, item);
+            }
+        }
+
+        writer.WriteEndArray();
     }
 
     /// <summary>
