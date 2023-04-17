@@ -50,7 +50,7 @@ public class ObjectShould
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
         var resultObject = JsonNode.Parse(resultJson);
-            
+
         // Assert
         JsonAssert.Equal(inputObject, resultObject, true);
     }

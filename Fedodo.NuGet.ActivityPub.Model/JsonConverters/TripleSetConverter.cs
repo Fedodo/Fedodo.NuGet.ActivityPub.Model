@@ -75,7 +75,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         }
 
         writer.WriteStartArray();
-        
+
         if (value.Objects.IsNotNullOrEmpty())
             foreach (var item in value.Objects)
             {
@@ -86,7 +86,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 });
             }
-        
+
         if (value.StringLinks.IsNotNullOrEmpty())
             foreach (var item in value.StringLinks)
                 writer.WriteStringValue(item);
