@@ -49,7 +49,5 @@ public class LinkTypeConverter<T> : JsonConverter<T> where T : class
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
-
-        //TODO
     }
 }

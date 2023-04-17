@@ -45,7 +45,5 @@ public class ObjectTypeConverter<T> : JsonConverter<T> where T : class
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
-
-        //TODO
     }
 }
