@@ -322,7 +322,7 @@ public class ActivityShould
                 """;
         var inputObject = JsonNode.Parse(json);
 
-        var create = JsonSerializer.Deserialize<Activity>(json, new JsonSerializerOptions
+        var create = JsonSerializer.Deserialize<Create>(json, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             Converters =

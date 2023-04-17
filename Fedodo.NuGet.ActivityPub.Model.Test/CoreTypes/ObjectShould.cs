@@ -1,9 +1,11 @@
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.JsonDiffPatch.Xunit;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
+using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Shouldly;
 using Xunit;
 
@@ -38,6 +40,9 @@ public class ObjectShould
         var json = File.ReadAllText("./TestData/ObjectTests/ObjectTest3.json");
         var inputObject = JsonNode.Parse(json);
         var activityPubObject = JsonSerializer.Deserialize<Object>(json);
+        var temp = activityPubObject!.Attachment!.Objects!.ToList();
+        temp[0] = (Image)activityPubObject.Attachment.Objects!.First();
+        activityPubObject.Attachment.Objects = temp;
 
         // Act
         var resultJson = JsonSerializer.Serialize(activityPubObject, new JsonSerializerOptions
@@ -45,7 +50,7 @@ public class ObjectShould
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
         var resultObject = JsonNode.Parse(resultJson);
-
+            
         // Assert
         JsonAssert.Equal(inputObject, resultObject, true);
     }

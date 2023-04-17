@@ -52,13 +52,19 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         // Only write one object if the count is 1 and not an array
         if (value.StringLinks.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.Objects?.Count() == 1)
         {
-            JsonSerializer.Serialize(writer, value.Objects.First());
+            JsonSerializer.Serialize(writer, value.Objects.First(), new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            });
             return;
         }
 
         if (value.StringLinks.IsNullOrEmpty() && value.Objects.IsNullOrEmpty() && value.Links?.Count() == 1)
         {
-            JsonSerializer.Serialize(writer, value.Links.First());
+            JsonSerializer.Serialize(writer, value.Links.First(), new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            });
             return;
         }
 
@@ -69,18 +75,28 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         }
 
         writer.WriteStartArray();
+        
+        if (value.Objects.IsNotNullOrEmpty())
+            foreach (var item in value.Objects)
+            {
+                var type = item.GetType();
 
+                JsonSerializer.Serialize(writer, item, type, new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                });
+            }
+        
         if (value.StringLinks.IsNotNullOrEmpty())
             foreach (var item in value.StringLinks)
                 writer.WriteStringValue(item);
 
-        if (value.Objects.IsNotNullOrEmpty())
-            foreach (var item in value.Objects)
-                JsonSerializer.Serialize(writer, item);
-
         if (value.Links.IsNotNullOrEmpty())
             foreach (var item in value.Links)
-                JsonSerializer.Serialize(writer, item);
+                JsonSerializer.Serialize(writer, item, new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                });
 
         writer.WriteEndArray();
     }

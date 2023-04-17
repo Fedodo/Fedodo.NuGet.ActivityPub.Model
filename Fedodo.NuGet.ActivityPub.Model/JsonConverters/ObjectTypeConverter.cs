@@ -41,7 +41,10 @@ public class ObjectTypeConverter<T> : JsonConverter<T> where T : class
 
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
-        JsonSerializer.Serialize(writer, value);
+        JsonSerializer.Serialize(writer, value, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
 
         //TODO
     }
