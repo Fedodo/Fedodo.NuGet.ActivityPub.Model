@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.Attributes;
 using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
@@ -78,19 +79,19 @@ public class Object : IType
     public Link? Url { get; set; }
 
     [JsonPropertyName("to")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? To { get; set; }
 
     [JsonPropertyName("bto")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? Bto { get; set; }
 
     [JsonPropertyName("cc")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? Cc { get; set; }
 
     [JsonPropertyName("bcc")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? Bcc { get; set; }
 
     [JsonPropertyName("type")] public string Type { get; set; } = "Object";

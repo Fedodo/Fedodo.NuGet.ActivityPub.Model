@@ -8,6 +8,17 @@ namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
 public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 {
+    private readonly bool _singleChildArray = false;
+
+    public TripleSetConverter(bool singleChildArray)
+    {
+        _singleChildArray = singleChildArray;
+    }
+
+    public TripleSetConverter()
+    {
+    }
+
     public override TripleSet<T>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         TripleSet<T> tripleSet = new();
@@ -49,29 +60,32 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     {
         if (value.IsNull()) return;
 
-        // Only write one object if the count is 1 and not an array
-        if (value.StringLinks.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.Objects?.Count() == 1)
+        if (_singleChildArray == false)
         {
-            JsonSerializer.Serialize(writer, value.Objects.First(), new JsonSerializerOptions
+            // Only write one object if the count is 1 and not an array
+            if (value.StringLinks.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.Objects?.Count() == 1)
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            });
-            return;
-        }
+                JsonSerializer.Serialize(writer, value.Objects.First(), new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                });
+                return;
+            }
 
-        if (value.StringLinks.IsNullOrEmpty() && value.Objects.IsNullOrEmpty() && value.Links?.Count() == 1)
-        {
-            JsonSerializer.Serialize(writer, value.Links.First(), new JsonSerializerOptions
+            if (value.StringLinks.IsNullOrEmpty() && value.Objects.IsNullOrEmpty() && value.Links?.Count() == 1)
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            });
-            return;
-        }
+                JsonSerializer.Serialize(writer, value.Links.First(), new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                });
+                return;
+            }
 
-        if (value.Objects.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.StringLinks?.Count() == 1)
-        {
-            writer.WriteStringValue(value.StringLinks.First());
-            return;
+            if (value.Objects.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.StringLinks?.Count() == 1)
+            {
+                writer.WriteStringValue(value.StringLinks.First());
+                return;
+            }
         }
 
         writer.WriteStartArray();
