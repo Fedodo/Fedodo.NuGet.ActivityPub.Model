@@ -107,10 +107,15 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 
         if (value.Links.IsNotNullOrEmpty())
             foreach (var item in value.Links)
-                JsonSerializer.Serialize(writer, item, new JsonSerializerOptions
+            {
+                var type = item.GetType();
+                
+                JsonSerializer.Serialize(writer, item, type, new JsonSerializerOptions
                 {
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 });
+            }
+
 
         writer.WriteEndArray();
     }

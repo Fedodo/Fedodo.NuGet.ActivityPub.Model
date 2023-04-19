@@ -22,9 +22,9 @@ public class Link : IType
     [JsonPropertyName("mediaType")] public string? MediaType { get; set; } // Must be a MIME Media Type
     [JsonPropertyName("name")] public string? Name { get; set; }
     [JsonPropertyName("nameMap")] public Dictionary<string, string>? NameMap { get; set; }
-    [JsonPropertyName("hreflang")] public string Hreflang { get; set; } // [BCP47] Language Tag
-    [JsonPropertyName("height")] public int Height { get; set; }
-    [JsonPropertyName("width")] public int Width { get; set; }
+    [JsonPropertyName("hreflang")] public string? Hreflang { get; set; } // [BCP47] Language Tag
+    [JsonPropertyName("height")] public int? Height { get; set; }
+    [JsonPropertyName("width")] public int? Width { get; set; }
 
     [JsonPropertyName("preview")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]

@@ -39,7 +39,7 @@ public class Object : IType
     public TripleSet<Image>? Image { get; set; }
 
     [JsonPropertyName("attachment")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? Attachment { get; set; }
 
     [JsonPropertyName("attributedTo")]
