@@ -227,6 +227,7 @@ public class ActivityShould
         note!.Attachment!.Objects!.First().ShouldBeOfType<Document>();
         note!.Url!.Href.ShouldBe(new Uri("https://social.heise.de/@heisedeveloper/109920532625809043"));
         note!.Tag!.Links!.First().ShouldBeOfType<Hashtag>();
+        note!.Tag.StringLinks.ShouldBeEmpty();
         hashtag.Type.ShouldBe("Hashtag");
         hashtag.Href.ShouldBe(new Uri("https://social.heise.de/tags/softwareentwicklung"));
         hashtag.Name.ShouldBe("#softwareentwicklung");
