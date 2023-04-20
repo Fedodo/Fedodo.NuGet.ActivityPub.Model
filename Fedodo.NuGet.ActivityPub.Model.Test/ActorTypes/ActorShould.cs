@@ -56,7 +56,7 @@ public class ActorShould
         person.ShouldNotBeNull();
         person.ShouldBeOfType<Person>();
         person.Type.ShouldBe("Person");
-        person.Id.ShouldBe("https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959");
+        person.Id.ShouldBe(new Uri("https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959"));
         person.Name.ShouldBe("Test User");
         person.PreferredUsername.ShouldBe("Test001");
         person.Summary.ShouldBe("I am a Test User");

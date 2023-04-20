@@ -2,7 +2,6 @@ using System.Linq;
 using System.Text.Json;
 using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
-using Fedodo.NuGet.ActivityPub.Model.LinkTypes;
 using Shouldly;
 using Xunit;
 
