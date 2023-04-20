@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Authors>Fedodo</Authors>
@@ -15,14 +15,19 @@
         <PackageTags>Fedodo;ActivityPub;Model;</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>Fedodo Circle Dark.png</PackageIcon>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="..\Assets\Fedodo Circle Dark.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-        <Link>Fedodo Circle Dark.png</Link>
-      </None>
+        <None Include="..\Assets\Fedodo Circle Dark.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>Fedodo Circle Dark.png</Link>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11" />
     </ItemGroup>
 
 </Project>
