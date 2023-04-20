@@ -130,7 +130,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
     {
         var tempReader = reader;
 
-        var link = JsonSerializer.Deserialize<Link>(ref tempReader, new JsonSerializerOptions
+        var templink = JsonSerializer.Deserialize<Link>(ref tempReader, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
             Converters =
@@ -139,7 +139,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
             }
         });
 
-        if (link.IsNull())
+        if (templink.IsNull())
         {
             var apObject = JsonSerializer.Deserialize<T>(ref reader, new JsonSerializerOptions
             {
@@ -168,6 +168,15 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         }
         else
         {
+            var link = JsonSerializer.Deserialize<Link>(ref reader, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                Converters =
+                {
+                    new LinkTypeConverter<Link>()
+                }
+            })!;
+            
             if (tripleSet.Links.IsNull())
             {
                 tripleSet.Links = new[]
