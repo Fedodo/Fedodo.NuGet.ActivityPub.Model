@@ -46,7 +46,7 @@ public class LinkTypeConverter<T> : JsonConverter<T> where T : class
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
     {
         var type = value.GetType();
-        
+
         JsonSerializer.Serialize(writer, value, type, new JsonSerializerOptions
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull

@@ -8,7 +8,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 
 public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 {
-    private readonly bool _singleChildArray = false;
+    private readonly bool _singleChildArray;
 
     public TripleSetConverter(bool singleChildArray)
     {
@@ -109,7 +109,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
             foreach (var item in value.Links)
             {
                 var type = item.GetType();
-                
+
                 JsonSerializer.Serialize(writer, item, type, new JsonSerializerOptions
                 {
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
@@ -176,7 +176,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
                     new LinkTypeConverter<Link>()
                 }
             })!;
-            
+
             if (tripleSet.Links.IsNull())
             {
                 tripleSet.Links = new[]
