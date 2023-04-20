@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.JsonDiffPatch;
 using System.Text.Json.JsonDiffPatch.Xunit;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -266,8 +267,6 @@ public class ActivityShould
                       "object": {
                         "id": "https://social.heise.de/users/heisedeveloper/statuses/109920532625809043",
                         "type": "Note",
-                        "summary": null,
-                        "inReplyTo": null,
                         "published": "2023-02-24T15:57:00Z",
                         "url": "https://social.heise.de/@heisedeveloper/109920532625809043",
                         "attributedTo": "https://social.heise.de/users/heisedeveloper",
@@ -278,9 +277,6 @@ public class ActivityShould
                           "https://social.heise.de/users/heisedeveloper/followers"
                         ],
                         "sensitive": false,
-                        "atomUri": "https://social.heise.de/users/heisedeveloper/statuses/109920532625809043",
-                        "inReplyToAtomUri": null,
-                        "conversation": "tag:social.heise.de,2023-02-24:objectId=209050:objectType=Conversation",
                         "content": "<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>",
                         "contentMap": {
                           "de": "<p>Developer Snapshots: Programmierer-News in ein, zwei Sätzen</p><p>Unsere Übersicht kleiner, interessanter Meldungen enthält unter anderem GraphQL, SwaggerHub Explore, JetBrains Academy Plugin, Deno und Hugging Face.</p><p><a href=\"https://www.heise.de/news/Developer-Snapshots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">heise.de/news/Developer-Snapsh</span><span class=\"invisible\">ots-Programmierer-News-in-ein-zwei-Saetzen-7526368.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege</span></a></p><p><a href=\"https://social.heise.de/tags/Softwareentwicklung\" class=\"mention hashtag\" rel=\"tag\">#<span>Softwareentwicklung</span></a> <a href=\"https://social.heise.de/tags/news\" class=\"mention hashtag\" rel=\"tag\">#<span>news</span></a></p>"
@@ -289,11 +285,7 @@ public class ActivityShould
                           {
                             "type": "Document",
                             "mediaType": "image/jpeg",
-                            "url": "https://social.heise.de/system/media_attachments/files/109/920/532/619/836/925/original/fb52dfc289817fa2.jpeg",
-                            "name": null,
-                            "blurhash": "UuGSjUtS0YIURRnNa*S#R7Rkk8x[t7j=WUfl",
-                            "width": 600,
-                            "height": 338
+                            "url": "https://social.heise.de/system/media_attachments/files/109/920/532/619/836/925/original/fb52dfc289817fa2.jpeg"
                           }
                         ],
                         "tag": [
@@ -311,7 +303,9 @@ public class ActivityShould
                         "replies": {
                           "id": "https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/replies",
                           "type": "Collection",
+                          "totalItems": 0,
                           "first": {
+                            "totalItems": 0,
                             "type": "CollectionPage",
                             "next": "https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/replies?only_other_accounts=true&page=true",
                             "partOf": "https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/replies",
