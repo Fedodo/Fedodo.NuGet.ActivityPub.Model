@@ -204,7 +204,7 @@ public class ActivityShould
         createActivity.ShouldNotBeNull();
         create.GetType().ShouldBe(typeof(Create));
         createActivity.Type.ShouldBe("Create");
-        createActivity.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/activity");
+        createActivity.Id.ShouldBe(new Uri("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/activity"));
         createActivity.Actor!.StringLinks!.ShouldContain("https://social.heise.de/users/heisedeveloper");
         createActivity.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
         createActivity.To!.StringLinks!.ShouldContain("https://www.w3.org/ns/activitystreams#Public");
@@ -214,7 +214,7 @@ public class ActivityShould
 
         note.ShouldNotBeNull();
         note.Type.ShouldBe("Note");
-        note.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043");
+        note.Id.ShouldBe(new Uri("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043"));
         note.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
         note!.AttributedTo!.StringLinks!.ShouldContain("https://social.heise.de/users/heisedeveloper");
         note!.To!.StringLinks!.ShouldContain("https://www.w3.org/ns/activitystreams#Public");
@@ -232,7 +232,7 @@ public class ActivityShould
         hashtag.Href.ShouldBe(new Uri("https://social.heise.de/tags/softwareentwicklung"));
         hashtag.Name.ShouldBe("#softwareentwicklung");
         note.Replies!.Type.ShouldBe("Collection");
-        note.Replies!.Id.ShouldBe("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/replies");
+        note.Replies!.Id.ShouldBe(new Uri("https://social.heise.de/users/heisedeveloper/statuses/109920532625809043/replies"));
         collectionPage.Type.ShouldBe("CollectionPage");
         collectionPage.ShouldBeOfType<CollectionPage>();
         collectionPage.Items?.Objects.ShouldBeNull();

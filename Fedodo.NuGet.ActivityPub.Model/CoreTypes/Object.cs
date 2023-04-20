@@ -26,7 +26,7 @@ public class Object : IType
     [JsonPropertyName("duration")] public string? Duration { get; set; } // Must be xsd:Duration
     [JsonPropertyName("mediaType")] public string? MediaType { get; set; } // Must be a MIME Media Type
     [JsonPropertyName("content")] public string? Content { get; set; }
-    [JsonPropertyName("id")] public string? Id { get; set; }
+    [JsonPropertyName("id")] public Uri? Id { get; set; }
     [JsonPropertyName("contentMap")] public Dictionary<string, string>? ContentMap { get; set; }
 
 
