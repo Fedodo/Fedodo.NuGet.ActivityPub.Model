@@ -209,7 +209,8 @@ public class ActivityShould
         createActivity.Actor!.StringLinks!.ShouldContain(new Uri("https://social.heise.de/users/heisedeveloper"));
         createActivity.Published.ShouldBe(DateTime.Parse("2023-02-24T15:57:00Z").ToUniversalTime());
         createActivity.To!.StringLinks!.ShouldContain(new Uri("https://www.w3.org/ns/activitystreams#Public"));
-        createActivity.Cc!.StringLinks!.ShouldContain(new Uri("https://social.heise.de/users/heisedeveloper/followers"));
+        createActivity.Cc!.StringLinks!.ShouldContain(
+            new Uri("https://social.heise.de/users/heisedeveloper/followers"));
         createActivity.Object.ShouldBeOfType<Note>();
         createActivity.Object!.GetType().ShouldBe(typeof(Note));
 
