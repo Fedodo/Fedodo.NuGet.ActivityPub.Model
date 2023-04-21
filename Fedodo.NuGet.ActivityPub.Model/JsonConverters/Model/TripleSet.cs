@@ -10,6 +10,6 @@ namespace Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 public class TripleSet<T>
 {
     public IEnumerable<T>? Objects { get; set; }
-    public IEnumerable<string>? StringLinks { get; set; }
+    public IEnumerable<Uri>? StringLinks { get; set; }
     public IEnumerable<Link>? Links { get; set; }
 }

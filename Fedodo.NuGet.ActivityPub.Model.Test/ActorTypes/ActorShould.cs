@@ -70,8 +70,8 @@ public class ActorShould
             new Uri("https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959#main-key"));
         person.PublicKey.Owner.ShouldBe(
             new Uri("https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959"));
-        person.Context!.StringLinks!.ShouldContain("https://www.w3.org/ns/activitystreams");
-        person.Context.StringLinks!.ShouldContain("https://w3id.org/security/v1");
+        person.Context!.StringLinks!.ShouldContain(new Uri("https://www.w3.org/ns/activitystreams"));
+        person.Context.StringLinks!.ShouldContain(new Uri("https://w3id.org/security/v1"));
     }
 
     [Fact]
