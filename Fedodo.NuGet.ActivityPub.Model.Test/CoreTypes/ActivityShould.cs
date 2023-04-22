@@ -193,9 +193,9 @@ public class ActivityShould
                 new ObjectTypeConverter<Activity>()
             }
         });
-        note = (Note?)create?.Object;
+        note = (Note?)create?.Object.Objects.First();
         createActivity = (Create)create!;
-        document = (Document)create?.Object?.Attachment?.Objects?.First()!;
+        document = (Document)create?.Object?.Objects.First().Attachment?.Objects?.First()!;
         hashtag = (Hashtag)note?.Tag?.Links?.First()!;
         collectionPage = note?.Replies?.First?.Objects?.First()!;
 
@@ -211,8 +211,8 @@ public class ActivityShould
         createActivity.To!.StringLinks!.ShouldContain(new Uri("https://www.w3.org/ns/activitystreams#Public"));
         createActivity.Cc!.StringLinks!.ShouldContain(
             new Uri("https://social.heise.de/users/heisedeveloper/followers"));
-        createActivity.Object.ShouldBeOfType<Note>();
-        createActivity.Object!.GetType().ShouldBe(typeof(Note));
+        createActivity.Object!.Objects!.First().ShouldBeOfType<Note>();
+        createActivity.Object!.Objects!.First().GetType().ShouldBe(typeof(Note));
 
         note.ShouldNotBeNull();
         note.Type.ShouldBe("Note");
