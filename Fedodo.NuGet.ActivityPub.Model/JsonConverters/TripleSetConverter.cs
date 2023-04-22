@@ -65,7 +65,9 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
             // Only write one object if the count is 1 and not an array
             if (value.StringLinks.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.Objects?.Count() == 1)
             {
-                JsonSerializer.Serialize(writer, value.Objects.First(), new JsonSerializerOptions
+                var type = value.Objects.First().GetType();
+
+                JsonSerializer.Serialize(writer, value.Objects.First(), type, new JsonSerializerOptions
                 {
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 });
