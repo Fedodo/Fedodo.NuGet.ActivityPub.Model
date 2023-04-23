@@ -54,4 +54,26 @@ public class ObjectShould
         // Assert
         JsonAssert.Equal(inputObject, resultObject, true);
     }
+
+    [Fact]
+    public void AcceptPublicStrings()
+    {
+        // Arrange
+        var json = 
+            """
+                {
+                  "type": "Object",
+                  "attachment": [
+                    "https://example.com/example"
+                  ],
+                  "to": "as:Public"
+                }
+            """;
+
+        // Act
+        var activityPubObject = JsonSerializer.Deserialize<Object>(json);
+        
+        // Assert
+        activityPubObject!.To!.StringLinks.ShouldNotBeNull();
+    }
 }
