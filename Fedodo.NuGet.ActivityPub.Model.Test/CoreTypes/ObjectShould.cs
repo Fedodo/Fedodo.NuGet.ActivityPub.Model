@@ -1,13 +1,14 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.JsonDiffPatch.Xunit;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Shouldly;
 using Xunit;
+using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.Test.CoreTypes;
 
@@ -66,7 +67,11 @@ public class ObjectShould
                   "attachment": [
                     "https://example.com/example"
                   ],
-                  "to": "as:Public"
+                  "to": [
+                    "as:Public",
+                    "https://www.w3.org/ns/activitystreams#Public",
+                    "public"
+                    ]
                 }
             """;
 
@@ -75,5 +80,9 @@ public class ObjectShould
         
         // Assert
         activityPubObject!.To!.StringLinks.ShouldNotBeNull();
+        var list = activityPubObject!.To!.StringLinks.ToList();
+        list[0].ShouldBe("as:Public");
+        list[1].ShouldBe("https://www.w3.org/ns/activitystreams#Public");
+        list[2].ShouldBe("public");
     }
 }

@@ -213,13 +213,13 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         {
             tripleSet.StringLinks = new[]
             {
-                new Uri(stringLink)
+                stringLink
             };
         }
         else
         {
             var stringLinks = tripleSet.StringLinks.ToList();
-            stringLinks.Add(new Uri(stringLink));
+            stringLinks.Add(stringLink);
             tripleSet.StringLinks = stringLinks;
         }
 
