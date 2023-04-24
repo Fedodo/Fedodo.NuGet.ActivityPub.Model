@@ -85,7 +85,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 
             if (value.Objects.IsNullOrEmpty() && value.Links.IsNullOrEmpty() && value.StringLinks?.Count() == 1)
             {
-                writer.WriteStringValue(value.StringLinks.First().ToString());
+                writer.WriteStringValue(value.StringLinks.First());
                 return;
             }
         }
@@ -105,7 +105,7 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
 
         if (value.StringLinks.IsNotNullOrEmpty())
             foreach (var item in value.StringLinks)
-                writer.WriteStringValue(item.ToString());
+                writer.WriteStringValue(item);
 
         if (value.Links.IsNotNullOrEmpty())
             foreach (var item in value.Links)
@@ -213,13 +213,13 @@ public class TripleSetConverter<T> : JsonConverter<TripleSet<T>> where T : class
         {
             tripleSet.StringLinks = new[]
             {
-                new Uri(stringLink)
+                stringLink
             };
         }
         else
         {
             var stringLinks = tripleSet.StringLinks.ToList();
-            stringLinks.Add(new Uri(stringLink));
+            stringLinks.Add(stringLink);
             tripleSet.StringLinks = stringLinks;
         }
 
