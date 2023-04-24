@@ -1,14 +1,13 @@
-using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.JsonDiffPatch.Xunit;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 using Shouldly;
 using Xunit;
-using Object = Fedodo.NuGet.ActivityPub.Model.CoreTypes.Object;
 
 namespace Fedodo.NuGet.ActivityPub.Model.Test.CoreTypes;
 
@@ -60,7 +59,7 @@ public class ObjectShould
     public void AcceptPublicStrings()
     {
         // Arrange
-        var json = 
+        var json =
             """
                 {
                   "type": "Object",
@@ -77,7 +76,7 @@ public class ObjectShould
 
         // Act
         var activityPubObject = JsonSerializer.Deserialize<Object>(json);
-        
+
         // Assert
         activityPubObject!.To!.StringLinks.ShouldNotBeNull();
         var list = activityPubObject!.To!.StringLinks.ToList();
