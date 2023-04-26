@@ -8,5 +8,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Ignore : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Ignore";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Ignore";
 }

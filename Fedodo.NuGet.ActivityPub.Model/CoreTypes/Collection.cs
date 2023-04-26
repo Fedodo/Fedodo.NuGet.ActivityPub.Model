@@ -10,7 +10,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class Collection : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Collection";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Collection";
 
     [JsonPropertyName("totalItems")]
     public int TotalItems =>

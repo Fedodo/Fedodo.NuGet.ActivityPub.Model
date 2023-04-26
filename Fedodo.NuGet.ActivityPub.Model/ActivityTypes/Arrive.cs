@@ -9,5 +9,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Arrive : IntransitiveActivity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Arrive";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Arrive";
 }

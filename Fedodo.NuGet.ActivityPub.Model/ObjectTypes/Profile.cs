@@ -11,7 +11,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Profile : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Profile";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Profile";
 
     [JsonPropertyName("describes")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]

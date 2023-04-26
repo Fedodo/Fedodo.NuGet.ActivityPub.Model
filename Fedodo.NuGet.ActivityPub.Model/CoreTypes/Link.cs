@@ -30,5 +30,5 @@ public class Link : IType
     [JsonConverter(typeof(TripleSetConverter<Object>))]
     public TripleSet<Object>? Preview { get; set; }
 
-    [JsonPropertyName("type")] public string Type { get; set; } = "Link";
+    [JsonPropertyName("type")] public virtual string Type { get; set; } = "Link";
 }

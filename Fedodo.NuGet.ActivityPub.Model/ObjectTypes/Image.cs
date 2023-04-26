@@ -7,7 +7,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Image : Document
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Image";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Image";
     [JsonPropertyName("width")] public int? Width { get; set; }
     [JsonPropertyName("height")] public int? Height { get; set; }
 }

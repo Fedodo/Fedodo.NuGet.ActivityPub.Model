@@ -11,5 +11,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Undo : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Undo";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Undo";
 }

@@ -7,5 +7,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Video : Document
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Video";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Video";
 }

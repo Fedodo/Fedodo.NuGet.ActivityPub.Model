@@ -8,5 +8,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Article : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Article";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Article";
 }

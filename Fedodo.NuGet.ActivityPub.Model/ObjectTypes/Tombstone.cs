@@ -9,7 +9,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Tombstone : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Tombstone";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Tombstone";
     [JsonPropertyName("deleted")] public DateTime? Deleted { get; set; }
     [JsonPropertyName("formerType")] public string? FormerType { get; set; }
 }

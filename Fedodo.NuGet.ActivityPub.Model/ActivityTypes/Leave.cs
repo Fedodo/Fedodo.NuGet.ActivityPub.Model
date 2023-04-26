@@ -8,5 +8,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Leave : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Leave";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Leave";
 }
