@@ -4,5 +4,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActorTypes;
 
 public class Organization : Actor
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Organization";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Organization";
 }

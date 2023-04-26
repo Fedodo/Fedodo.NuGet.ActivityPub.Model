@@ -12,7 +12,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Relationship : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Relationship";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Relationship";
 
     [JsonPropertyName("subject")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]

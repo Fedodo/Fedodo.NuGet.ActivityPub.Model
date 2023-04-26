@@ -9,5 +9,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Flag : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Flag";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Flag";
 }

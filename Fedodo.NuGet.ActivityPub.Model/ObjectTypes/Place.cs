@@ -8,7 +8,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 /// </summary>
 public class Place : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Place";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Place";
     [JsonPropertyName("accuracy")] public double Accuracy { get; set; }
     [JsonPropertyName("latitude")] public double Latitude { get; set; }
     [JsonPropertyName("longitude")] public double Longitude { get; set; }

@@ -9,7 +9,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class OrderedCollection : Collection
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "OrderedCollection";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "OrderedCollection";
 
     [JsonPropertyName("orderedItems")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]

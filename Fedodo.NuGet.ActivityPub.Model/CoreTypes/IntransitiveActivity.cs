@@ -8,6 +8,6 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 /// </summary>
 public class IntransitiveActivity : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "IntransitiveActivity";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "IntransitiveActivity";
     [JsonPropertyName("object")] public new Object? Object { get; } = null;
 }

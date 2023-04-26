@@ -9,5 +9,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Announce : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Announce";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Announce";
 }

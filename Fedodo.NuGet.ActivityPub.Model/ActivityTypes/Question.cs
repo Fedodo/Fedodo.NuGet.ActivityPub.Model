@@ -14,7 +14,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Question : IntransitiveActivity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Question";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Question";
 
     public TripleSet<Object>? OneOf { get; set; }
     public TripleSet<Object>? AnyOf { get; set; }

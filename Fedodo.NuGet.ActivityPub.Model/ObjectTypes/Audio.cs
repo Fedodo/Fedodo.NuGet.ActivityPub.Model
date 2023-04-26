@@ -4,5 +4,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
 
 public class Audio : Document
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Audio";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Audio";
 }

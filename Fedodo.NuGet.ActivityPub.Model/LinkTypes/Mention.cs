@@ -5,5 +5,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.LinkTypes;
 
 public class Mention : Link
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Mention";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Mention";
 }

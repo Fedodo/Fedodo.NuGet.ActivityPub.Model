@@ -10,5 +10,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Follow : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Follow";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Follow";
 }

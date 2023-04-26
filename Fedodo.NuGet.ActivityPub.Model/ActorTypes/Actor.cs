@@ -9,7 +9,7 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActorTypes;
 /// </summary>
 public class Actor : Object
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Actor";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Actor";
 
     [JsonPropertyName("preferredUsername")]
     public string? PreferredUsername { get; set; }

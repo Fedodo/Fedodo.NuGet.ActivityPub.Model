@@ -94,5 +94,5 @@ public class Object : IType
     [SingleObjectArray]
     public TripleSet<Object>? Bcc { get; set; }
 
-    [JsonPropertyName("type")] public string Type { get; set; } = "Object";
+    [JsonPropertyName("type")] public virtual string Type { get; set; } = "Object";
 }

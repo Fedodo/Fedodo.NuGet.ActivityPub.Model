@@ -8,5 +8,5 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActivityTypes;
 /// </summary>
 public class Dislike : Activity
 {
-    [JsonPropertyName("type")] public new string Type { get; set; } = "Dislike";
+    [JsonPropertyName("type")] public override string Type { get; set; } = "Dislike";
 }
