@@ -52,7 +52,13 @@ public class Object : IType
 
     [JsonPropertyName("@context")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
-    public TripleSet<Object>? Context { get; set; }
+    public TripleSet<Object>? Context { get; set; } = new()
+    {
+        StringLinks = new []
+        {
+            "https://www.w3.org/ns/activitystreams"
+        }
+    };
 
     [JsonPropertyName("generator")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
