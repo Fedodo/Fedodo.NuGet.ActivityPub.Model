@@ -28,13 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="MongoDB.Bson">
-            <HintPath>..\..\..\.nuget\packages\mongodb.bson\2.19.1\lib\netstandard2.1\MongoDB.Bson.dll</HintPath>
-        </Reference>
+        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.13" />
+        <PackageReference Include="MongoDB.Bson" Version="2.19.1" />
     </ItemGroup>
 
 </Project>
