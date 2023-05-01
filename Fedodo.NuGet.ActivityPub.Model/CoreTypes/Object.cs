@@ -4,6 +4,7 @@ using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
@@ -12,6 +13,8 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 ///     defined in the Activity Vocabulary, including other Core types such as Activity, IntransitiveActivity, Collection
 ///     and OrderedCollection.
 /// </summary>
+[BsonKnownTypes(typeof(Note), typeof(Document))]
+[BsonDiscriminator(Required = true)]
 public class Object : IType
 {
     [JsonPropertyName("name")] public string? Name { get; set; }
