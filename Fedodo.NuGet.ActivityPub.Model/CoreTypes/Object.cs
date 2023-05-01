@@ -54,7 +54,7 @@ public class Object : IType
     [JsonConverter(typeof(TripleSetConverter<Object>))]
     public TripleSet<Object>? Context { get; set; } = new()
     {
-        StringLinks = new []
+        StringLinks = new[]
         {
             "https://www.w3.org/ns/activitystreams"
         }

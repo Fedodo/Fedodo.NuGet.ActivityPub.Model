@@ -13,11 +13,11 @@ public class ActorShould
         // Arrange
         var document = new BsonDocument
         {
-            {"_id", "https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959"},
-            {"Type", "Person"},
-            {"Summary", "I am a Test User"},
+            { "_id", "https://dev.fedodo.social/actor/e287834b-0564-4ece-b793-0ef323344959" },
+            { "Type", "Person" },
+            { "Summary", "I am a Test User" }
         };
-        
+
         // Act
         var result = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<Actor>(document);
 
