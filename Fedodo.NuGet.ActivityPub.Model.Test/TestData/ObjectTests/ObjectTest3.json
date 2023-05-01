@@ -1,11 +1,13 @@
 {
-  "type": "Object",
   "attachment": [
     {
       "type": "Image",
       "content": "This is what he looks like.",
+      "@context": "https://www.w3.org/ns/activitystreams",
       "url": "https://example.org/cat.jpeg"
     },
     "https://example.org/cat.jpeg"
-  ]
+  ],
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Object"
 }
