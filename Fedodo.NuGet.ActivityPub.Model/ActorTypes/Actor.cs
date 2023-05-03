@@ -9,8 +9,16 @@ namespace Fedodo.NuGet.ActivityPub.Model.ActorTypes;
 /// </summary>
 public class Actor : Object
 {
+    /// <summary>
+    /// Identifies the Object or Link type.
+    /// </summary>
+    /// <example>Actor</example>
     [JsonPropertyName("type")] public override string Type { get; set; } = "Actor";
 
+    /// <summary>
+    /// The real username displayed together with the domain name. This would look like "Jane@example.com".
+    /// </summary>
+    /// <example>Jane</example>
     [JsonPropertyName("preferredUsername")]
     public string? PreferredUsername { get; set; }
 
