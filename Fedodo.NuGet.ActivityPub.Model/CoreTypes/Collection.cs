@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.Attributes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
@@ -17,7 +18,7 @@ public class Collection : Object
         Items?.Links?.Count() ?? 0 + Items?.Objects?.Count() ?? 0 + Items?.StringLinks?.Count() ?? 0;
 
     [JsonPropertyName("items")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public TripleSet<Object>? Items { get; set; }
 
     [JsonPropertyName("current")]

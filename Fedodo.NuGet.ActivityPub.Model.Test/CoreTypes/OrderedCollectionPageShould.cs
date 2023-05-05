@@ -39,4 +39,34 @@ public class OrderedCollectionPageShould
         json.ShouldNotBeNull();
         json.ShouldBe(jsonShould);
     }
+    
+    [Fact]
+    public void ShouldSerializeSingleObjectCorrectly()
+    {
+        // Arrange
+        OrderedCollectionPage page = new()
+        {
+            Items = new TripleSet<Object>()
+            {
+                StringLinks = new []
+                {
+                    "Lexa kom Trikru"
+                }
+            }
+        };
+        var jsonShould =
+            """
+            {"type":"OrderedCollectionPage","startIndex":0,"orderedItems":["Lexa kom Trikru"],"totalItems":0,"@context":"https://www.w3.org/ns/activitystreams"}
+            """;
+
+        // Act
+        var json = JsonSerializer.Serialize(page, new JsonSerializerOptions()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+
+        // Assert
+        json.ShouldNotBeNull();
+        json.ShouldBe(jsonShould);
+    }
 }
