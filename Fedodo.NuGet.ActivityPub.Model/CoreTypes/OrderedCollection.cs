@@ -13,7 +13,7 @@ public class OrderedCollection : Collection
 
     [JsonPropertyName("orderedItems")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
-    public override TripleSet<Object>? Items { get; set; }
+    public new TripleSet<Object>? Items { get; set; }
 
     [JsonPropertyName("current")]
     [JsonConverter(typeof(TripleSetConverter<OrderedCollectionPage>))]
