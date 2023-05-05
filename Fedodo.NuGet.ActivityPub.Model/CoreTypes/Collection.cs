@@ -18,7 +18,7 @@ public class Collection : Object
 
     [JsonPropertyName("items")]
     [JsonConverter(typeof(TripleSetConverter<Object>))]
-    public TripleSet<Object>? Items { get; set; }
+    public virtual TripleSet<Object>? Items { get; set; }
 
     [JsonPropertyName("current")]
     [JsonConverter(typeof(TripleSetConverter<CollectionPage>))]
