@@ -28,7 +28,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.11" />
+        <PackageReference Include="LNA-DEV.CommonExtensions" Version="1.2.13" />
+        <PackageReference Include="MongoDB.Bson" Version="2.19.1" />
     </ItemGroup>
 
 </Project>

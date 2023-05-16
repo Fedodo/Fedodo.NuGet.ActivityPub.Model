@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 using Fedodo.NuGet.ActivityPub.Model.Interfaces;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
+using Fedodo.NuGet.ActivityPub.Model.LinkTypes;
+using Fedodo.NuGet.ActivityPub.Model.ObjectTypes;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 
@@ -12,6 +15,8 @@ namespace Fedodo.NuGet.ActivityPub.Model.CoreTypes;
 ///     containing object) to the resource identified by the href. Properties of the Link are properties of the reference
 ///     as opposed to properties of the resource.
 /// </summary>
+[BsonKnownTypes(typeof(Hashtag), typeof(Mention))]
+[BsonDiscriminator(Required = true)]
 public class Link : IType
 {
     [JsonPropertyName("href")] public Uri? Href { get; set; }

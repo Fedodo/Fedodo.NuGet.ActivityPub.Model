@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Fedodo.NuGet.ActivityPub.Model.Attributes;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters;
 using Fedodo.NuGet.ActivityPub.Model.JsonConverters.Model;
 
@@ -12,7 +13,7 @@ public class OrderedCollection : Collection
     [JsonPropertyName("type")] public override string Type { get; set; } = "OrderedCollection";
 
     [JsonPropertyName("orderedItems")]
-    [JsonConverter(typeof(TripleSetConverter<Object>))]
+    [SingleObjectArray]
     public new TripleSet<Object>? Items { get; set; }
 
     [JsonPropertyName("current")]
@@ -26,4 +27,6 @@ public class OrderedCollection : Collection
     [JsonPropertyName("last")]
     [JsonConverter(typeof(TripleSetConverter<OrderedCollectionPage>))]
     public new TripleSet<OrderedCollectionPage>? Last { get; set; }
+
+    [JsonPropertyName("totalItems")] public new long TotalItems { get; set; }
 }
